@@ -28,7 +28,11 @@ abstract class Persona {
         else{
             throw new InputMismatchException("El dni no es valido.");
         }
-        this.telefono = telefono;
+        if(isTelefonoValido(telefono))
+            this.telefono = telefono;
+        else{
+            throw new InputMismatchException("El numero de telefono es incorrecto");
+        }
     }
 
     public String getNombre() {
@@ -102,6 +106,16 @@ abstract class Persona {
             return (String.valueOf(dni.charAt(8)).equalsIgnoreCase(String.valueOf(letras[resto])));
         }
         
+    }
+    
+    /**
+     * Metodo para comprobar el telefono
+     * @param telefono para poder hacer las comprobaciónes
+     * @return true en caso de que sea valido y false en caso contrario
+     */
+    private static boolean isTelefonoValido(int telefono){
+        String NumbrePhone = String.valueOf((Integer) telefono);
+        return (NumbrePhone.length()==8);
     }
     
 }
