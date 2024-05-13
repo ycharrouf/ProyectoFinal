@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package Clase;
+package Clases;
 
 
 /**
@@ -11,13 +11,17 @@ package Clase;
  */
 public class Cliente extends Persona{
     private final String estadoCivil;
-
+    private String tipoCuenta;
+    //Tipo de cuenta que puede ser de empresa o no
+    
     /**
      * Constructor por parametros.
      */
-    public Cliente(String nombre, String apellido, int edad, String email, String DNI, int telefono, String estadoCivil) {
+    public Cliente(String nombre, String apellido, int edad, String email, String DNI, int telefono, String estadoCivil, String tipoCuenta) {
         super(nombre, email, edad, email, DNI, telefono);
         this.estadoCivil = estadoCivil;
+        this.tipoCuenta=tipoCuenta;
+        
     }
     //Setter and Getter
 
