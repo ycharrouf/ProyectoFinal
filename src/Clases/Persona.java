@@ -18,6 +18,7 @@ abstract class Persona {
     private String DNI; //validar con un metodo
     private int telefono;
 
+
     protected Persona(String nombre, String apellido, int edad, String email, String DNI, int telefono) throws InputMismatchException{
         this.nombre = nombre;
         this.apellido = apellido;

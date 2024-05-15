@@ -10,16 +10,14 @@ package Clases;
  * @author Yassin Charrouf Errynda
  */
 public class Cliente extends Persona{
-    private final String estadoCivil;
     private String tipoCuenta;
     //Tipo de cuenta que puede ser de empresa o no
     
     /**
      * Constructor por parametros.
      */
-    public Cliente(String nombre, String apellido, int edad, String email, String DNI, int telefono, String estadoCivil, String tipoCuenta) {
+    public Cliente(String nombre, String apellido, int edad, String email, String DNI, int telefono, String tipoCuenta) {
         super(nombre, email, edad, email, DNI, telefono);
-        this.estadoCivil = estadoCivil;
         this.tipoCuenta=tipoCuenta;
         
     }
@@ -85,10 +83,6 @@ public class Cliente extends Persona{
         return super.getNombre(); 
     }
 
-    @Override
-    public String toString() {
-        return super.toString()+", Estado Civil: "+estadoCivil+"]"; 
-    }
 
     
 }
