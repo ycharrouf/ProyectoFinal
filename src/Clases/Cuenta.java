@@ -11,16 +11,14 @@ import java.util.*;
  */
 public class Cuenta {
     private String NumCuenta;
-    private Cliente cliente;
     private double saldo;
     private String tipoCuenta;
     //private//  ///Array de movimientos para que esten todos asociados a la cuenta.
     private ArrayList<Movimientos> movimientos;
 
-    public Cuenta(Cliente cliente, double saldo, ArrayList<Movimientos> movimientos, String tipoCuenta) {
+    public Cuenta( double saldo, ArrayList<Movimientos> movimientos, String tipoCuenta) {
         
         this.NumCuenta = "ES"+generarIBAN();
-        this.cliente = cliente;
         this.saldo = saldo;
         this.movimientos = movimientos;
         this.tipoCuenta=tipoCuenta;
@@ -32,14 +30,6 @@ public class Cuenta {
 
     public void setNumCuenta(String NumCuenta) {
         this.NumCuenta = NumCuenta;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public double getSaldo() {

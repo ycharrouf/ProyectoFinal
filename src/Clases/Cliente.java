@@ -10,14 +10,16 @@ package Clases;
  * @author Yassin Charrouf Errynda
  */
 public class Cliente extends Persona{
+    private Cuenta cuenta;
     private String tipoCuenta;
     //Tipo de cuenta que puede ser de empresa o no
     
     /**
      * Constructor por parametros.
      */
-    public Cliente(String nombre, String apellido, int edad, String email, String DNI, int telefono, String tipoCuenta) {
+    public Cliente(String nombre, String apellido, int edad, String email, String DNI, int telefono,Cuenta cuenta, String tipoCuenta) {
         super(nombre, email, edad, email, DNI, telefono);
+        this.cuenta=cuenta;
         this.tipoCuenta=tipoCuenta;
         
     }
