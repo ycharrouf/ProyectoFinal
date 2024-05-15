@@ -18,6 +18,7 @@ public class Empleado extends Persona{
     
     public Empleado(String nombre, String apellido, int edad, String email, String DNI, int telefono) throws InputMismatchException {
         super(nombre, apellido, edad, email, DNI, telefono);
+        
         ///int departamento (opciones estan al lado del atributo)
     }
     
