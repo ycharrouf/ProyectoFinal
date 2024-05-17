@@ -84,7 +84,5 @@ public class Cliente extends Persona{
     public String getNombre() {
         return super.getNombre(); 
     }
-
-
     
 }

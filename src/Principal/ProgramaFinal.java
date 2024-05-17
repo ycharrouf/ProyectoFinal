@@ -19,7 +19,10 @@ public class ProgramaFinal {
         // TODO code application logic here
     }
     
-    public static void menú(){
+    /**
+     * Menú principal que van a tener los trabajadores.
+     */
+    public static void menuPrincipalEmpleados(){
         int opcion=0;
         do {       
             System.out.println("");
@@ -27,8 +30,10 @@ public class ProgramaFinal {
             System.out.println("1.\tGestión de usuarios.");
         } while (true);
     }
-    
-    public static void menuGestUsuarios(){
+    /**
+     * Menú para gestion de usuarios que va a tener los empleados.
+     */
+    public static void menuGestUsuariosEmpleados(){
         int opcion=0;
         do {            
             System.out.println("");
