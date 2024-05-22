@@ -6,7 +6,7 @@ package Clases;
 import java.util.*;
 
 /**
- * Clase cuenta donde se recogen le cliente al que va asocidado un historial de movimientos, saldo y el tipo de cuenta.
+ * Clase cuenta donde se al que va asocidado un historial de movimientos, saldo y el tipo de cuenta.
  * @author Yassin
  */
 public class Cuenta {
@@ -14,13 +14,13 @@ public class Cuenta {
     private double saldo;
     private String tipoCuenta;
     //private//  ///Array de movimientos para que esten todos asociados a la cuenta.
-    private ArrayList<Movimientos> movimientos;
+    protected static ArrayList<Movimientos> movimientos = new ArrayList<>();
 
-    public Cuenta( double saldo, ArrayList<Movimientos> movimientos, String tipoCuenta) {
+    public Cuenta( double saldo, String tipoCuenta) {
         
         this.NumCuenta = "ES"+generarIBAN();
         this.saldo = saldo;
-        this.movimientos = movimientos;
+        //Cuanto el cliente crea al cuenta queda registrado.
         this.tipoCuenta=tipoCuenta;
     }
 

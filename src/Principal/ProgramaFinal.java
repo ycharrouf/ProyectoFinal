@@ -4,6 +4,7 @@
  */
 package Principal;
 
+import Clases.Cliente;
 import java.util.Scanner;
 
 /**
@@ -12,6 +13,8 @@ import java.util.Scanner;
  */
 public class ProgramaFinal {
     private static Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    private static Cliente clienteActual=null;
+    
     /**
      * @param args the command line arguments
      */
@@ -19,29 +22,6 @@ public class ProgramaFinal {
         // TODO code application logic here
     }
     
-    /**
-     * Menú principal que van a tener los trabajadores.
-     */
-    public static void menuPrincipalEmpleados(){
-        int opcion=0;
-        do {       
-            System.out.println("");
-            System.out.println("================BANCO============= ");
-            System.out.println("1.\tGestión de usuarios.");
-        } while (true);
-    }
-    /**
-     * Menú para gestion de usuarios que va a tener los empleados.
-     */
-    public static void menuGestUsuariosEmpleados(){
-        int opcion=0;
-        do {            
-            System.out.println("");
-            System.out.println("=========Gestión de usuarios=========");
-            System.out.println("1.\tDar a un cliente de alta.");
-            System.out.println("2.\tDar a un cliente de baja.");
-            System.out.println("3.\tCambiar información de un cliente.");
-            System.out.println("4.\tCertificado de titularidad.");
-        } while (true);
-    }
+    
+    
 }

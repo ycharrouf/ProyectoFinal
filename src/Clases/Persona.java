@@ -17,9 +17,11 @@ abstract class Persona {
     private String email;///hay que validarlos con java.net.uri;
     private String DNI; //validar con un metodo
     private int telefono;
+    private String direccion;
+    private String contaseña;
 
 
-    protected Persona(String nombre, String apellido, int edad, String email, String DNI, int telefono) throws InputMismatchException{
+    protected Persona(String nombre, String apellido, int edad, String email, String DNI, int telefono,String direccion, String contraseña) throws InputMismatchException{
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
@@ -34,6 +36,8 @@ abstract class Persona {
         else{
             throw new InputMismatchException("El numero de telefono es incorrecto");
         }
+        this.direccion=direccion;
+        this.contaseña=contraseña;
     }
 
     public String getNombre() {
@@ -84,9 +88,27 @@ abstract class Persona {
         this.telefono = telefono;
     }
     
+    public String getDireccion(){
+        return this.direccion;
+    }
+    
+    public void setDireccion(String direccion){
+        this.direccion=direccion;
+    }
+
+    public String getContaseña() {
+        return contaseña;
+    }
+
+    public void setContaseña(String contaseña) {
+        this.contaseña = contaseña;
+    }
+    
+    
+    
     @Override
     public String toString() {
-        return "Cliente[nombre: " + nombre + ", apellido: " + apellido + ", edad: " + edad + ", email:" + email + ", DNI: " + DNI + ", telefono: " + telefono + ", estadoCivil: ";
+        return "Cliente --> nombre: " + nombre + ", apellido: " + apellido + ", edad: " + edad + ", email:" + email + ", DNI: " + DNI + ", telefono: " + telefono;
     }
     
     /**
@@ -116,7 +138,8 @@ abstract class Persona {
      */
     private static boolean isTelefonoValido(int telefono){
         String NumbrePhone = String.valueOf((Integer) telefono);
-        return (NumbrePhone.length()==8);
+        System.out.println(NumbrePhone.length());
+        return (NumbrePhone.length()==9);
     }
     
 }

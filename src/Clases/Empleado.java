@@ -11,15 +11,20 @@ import java.util.InputMismatchException;
  * @author Yassin
  */
 public class Empleado extends Persona{
-    int departamento;//tiene que haber tepartamentos
-    //Banca personal
-    //Banca cooperativa
-    //banca de inversión
-    
-    public Empleado(String nombre, String apellido, int edad, String email, String DNI, int telefono) throws InputMismatchException {
-        super(nombre, apellido, edad, email, DNI, telefono);
-        
-        ///int departamento (opciones estan al lado del atributo)
+    private boolean esJefe;
+    public Empleado(String nombre, String apellido, int edad, String email, String DNI, int telefono, String direccion, String contraseña, boolean esJefe) throws InputMismatchException {
+        super(nombre, apellido, edad, email, DNI, telefono, direccion, contraseña);
+        this.esJefe=esJefe;
     }
+
+    public boolean isEsJefe() {
+        return esJefe;
+    }
+
+    public void setEsJefe(boolean esJefe) {
+        this.esJefe = esJefe;
+    }
+    
+    
     
 }

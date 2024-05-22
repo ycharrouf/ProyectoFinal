@@ -17,72 +17,29 @@ public class Cliente extends Persona{
     /**
      * Constructor por parametros.
      */
-    public Cliente(String nombre, String apellido, int edad, String email, String DNI, int telefono,Cuenta cuenta, String tipoCuenta) {
-        super(nombre, email, edad, email, DNI, telefono);
+    public Cliente(String nombre, String apellido, int edad, String email, String DNI, int telefono,String direccion, String contraseña, Cuenta cuenta, String tipoCuenta) {
+        super(nombre, email, edad, email, DNI, telefono,direccion, contraseña);
         this.cuenta=cuenta;
         this.tipoCuenta=tipoCuenta;
-        
+        //Cuando el cliente crea la cuenta se añade un registro para cuando de crea la cuenta.
+        Cuenta.movimientos.add(new Movimientos(("El clietne "+super.getNombre()+" a abierto una cuenta nueva"),cuenta.getSaldo(), this ));
     }
     //Setter and Getter
 
-    @Override
-    public void setTelefono(int telefono) {
-        super.setTelefono(telefono); 
+    public Cuenta getCuenta() {
+        return cuenta;
     }
 
-    @Override
-    public int getTelefono() {
-        return super.getTelefono(); 
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
     }
 
-    @Override
-    public void setDNI(String DNI) {
-        super.setDNI(DNI); 
+    public String getTipoCuenta() {
+        return tipoCuenta;
     }
 
-    @Override
-    public String getDNI() {
-        return super.getDNI();
+    public void setTipoCuenta(String tipoCuenta) {
+        this.tipoCuenta = tipoCuenta;
     }
 
-    @Override
-    public void setEmail(String email) {
-        super.setEmail(email); 
-    }
-
-    @Override
-    public String getEmail() {
-        return super.getEmail(); 
-    }
-
-    @Override
-    public void setEdad(int edad) {
-        super.setEdad(edad); 
-    }
-
-    @Override
-    public int getEdad() {
-        return super.getEdad(); 
-    }
-
-    @Override
-    public void setApellido(String apellido) {
-        super.setApellido(apellido);
-    }
-
-    @Override
-    public String getApellido() {
-        return super.getApellido();
-    }
-
-    @Override
-    public void setNombre(String nombre) {
-        super.setNombre(nombre);
-    }
-
-    @Override
-    public String getNombre() {
-        return super.getNombre(); 
-    }
-    
 }

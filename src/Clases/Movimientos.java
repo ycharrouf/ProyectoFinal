@@ -46,7 +46,7 @@ public class Movimientos {
     
     @Override
     public String toString() {
-        return "Movimiento-> [concepto: " + concepto + ", importe:" + importe + ", beneficiario: " + beneficiario + ", fecha: " + fecha + ']';
+        return "Movimiento->\nconcepto: " + concepto + "\nimporte:" + importe + "\nbeneficiario: " + beneficiario + "\nfecha: " + fecha ;
     }
     
 }
