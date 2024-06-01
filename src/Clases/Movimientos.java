@@ -25,25 +25,6 @@ public class Movimientos {
         fecha=String.valueOf(LocalDateTime.now()).substring(0,10);
     }
     
-    //Los metodos Getter.
-
-    public String getConcepto() {
-        return concepto;
-    }
-
-    public double getImporte() {
-        return importe;
-    }
-
-    public Cliente getBeneficiario() {
-        return beneficiario;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-    
-    
     @Override
     public String toString() {
         return "Movimiento->\nconcepto: " + concepto + "\nimporte:" + importe + "\nbeneficiario: " + beneficiario + "\nfecha: " + fecha ;

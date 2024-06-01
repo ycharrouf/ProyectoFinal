@@ -12,16 +12,14 @@ import java.util.*;
 public class Cuenta {
     private String NumCuenta;
     private double saldo;
-    private String tipoCuenta;
     //private//  ///Array de movimientos para que esten todos asociados a la cuenta.
     protected static ArrayList<Movimientos> movimientos = new ArrayList<>();
 
-    public Cuenta( double saldo, String tipoCuenta) {
+    public Cuenta( double saldo) {
         
         this.NumCuenta = "ES"+generarIBAN();
         this.saldo = saldo;
         //Cuanto el cliente crea al cuenta queda registrado.
-        this.tipoCuenta=tipoCuenta;
     }
 
     public String getNumCuenta() {
@@ -46,14 +44,6 @@ public class Cuenta {
 
     public void setMovimientos(ArrayList<Movimientos> movimientos) {
         this.movimientos = movimientos;
-    }
-    
-    public String getTipoCuenta() {
-        return tipoCuenta;
-    }
-
-    public void setTipoCuenta(String tipoCuenta) {
-        this.tipoCuenta = tipoCuenta;
     }
     
     //Posible falta de toString????

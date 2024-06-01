@@ -26,8 +26,8 @@ public class CuentaDAO {
         String sql="insert into cuenta values(?,?,?)";
         try (PreparedStatement statement = conexion.prepareStatement(sql)){
             statement.setString(1, cliente.getCuenta().getNumCuenta());
+            statement.setString(1, cliente.getCuenta().getNumCuenta());
             statement.setDouble(2, cliente.getCuenta().getSaldo());
-            statement.setString(3, cliente.getCuenta().getTipoCuenta());
             
             if (statement.executeUpdate()>0){
                 return true;
