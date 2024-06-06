@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Clases;
+import java.util.*;
 import Interfaces.EncriptacionPass;
+import com.mysql.cj.protocol.Resultset;
 import java.sql.*;
 /**
  *
@@ -33,11 +35,13 @@ public class ClienteDAO implements EncriptacionPass{
                 statement.setString(5, cliente.getEmail());
                 statement.setString(6, cliente.getDireccion());
                 statement.setInt(7,cliente.getTelefono());
-                statement.setString(9, EncriptacionPass.encriptaPass(cliente.getContaseña()));
-                statement.setString(10, cliente.getCuenta().getNumCuenta());
-                statement.executeUpdate();
+                statement.setString(8, EncriptacionPass.encriptaPass(cliente.getContaseña()));
+                statement.setString(9, cliente.getCuenta().getNumCuenta());
+                System.out.println(statement.executeUpdate());
+                        
             }
         }
+                
     }
     
     /**
@@ -61,11 +65,11 @@ public class ClienteDAO implements EncriptacionPass{
      */
     public Cliente obtenerCliente(String dni) throws SQLException{
         Cliente cliente = null;
-        String sql = "select * from clientes where dni= '"+dni+"';";
+        String sql = "select clientes.*, cuenta.saldo from clientes, cuenta where clientes.numCuenta=cuenta.numCuenta and dni= '"+dni+"';";
         try(Statement statement = conexion.createStatement()){
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()){
-                cliente= new Cliente(rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("edad"), rs.getString("email"), rs.getString("dni"), rs.getInt("telefono"), rs.getString("direccion"), rs.getString("contraseña"));
+                cliente= new Cliente(rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("edad"), rs.getString("email"), rs.getString("dni"), rs.getInt("telefono"), rs.getString("direccion"), rs.getString("contraseña"), new Cuenta(rs.getString("numCuenta"), rs.getDouble("saldo")));
             }
         }
         //comprobamos el cliente si esta a null o no
@@ -83,7 +87,7 @@ public class ClienteDAO implements EncriptacionPass{
      * @throws SQLException en caso de que se produzca cualquier otro error.
      */
     public int actualizarCliente (Cliente cliente) throws SQLException{
-        String sql = "update clientes set nombre='?', apellidos='?', edad=?, email='?', direccion='?', telefono=? where dni='?'";
+        String sql = "update clientes set nombre=?, apellidos=?, edad=?, email=?, direccion=?, telefono=? where dni=?;";
         
         try(PreparedStatement statement = conexion.prepareStatement(sql)){
             statement.setString(1, cliente.getNombre());
@@ -103,11 +107,20 @@ public class ClienteDAO implements EncriptacionPass{
      * @return un resulset con todos los clientes.
      * @throws SQLException en caso de que se produzca cualquier otro error.
      */
-    public ResultSet infotodosCLientes () throws SQLException{
-        String sql = "select * from clientes;";
+    public ArrayList<Cliente> infotodosCLientes () throws SQLException{
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        String sql = "select clientes.*, cuenta.saldo from clientes, cuenta where clientes.numCuenta=cuenta.numCuenta";
+        ResultSet rs = null;
         try(Statement statement = conexion.createStatement()){
-            ResultSet resulset = statement.executeQuery(sql);
-            return  resulset;
+            rs = statement.executeQuery(sql);
+            while (rs.next()) {
+            clientes.add(new Cliente(rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("edad"), rs.getString("email"), rs.getString("dni"), rs.getInt("telefono"), rs.getString("direccion"), rs.getString("contraseña"), new Cuenta(rs.getString("numCuenta"), rs.getDouble("saldo"))));
+            }
         }
-    }
+        if(!clientes.isEmpty()){
+            return clientes;
+        }else{
+            throw new SQLException("No se a encontrado ningun cliente registrado.");
+        }
+    }  
 }

@@ -22,17 +22,39 @@ public class CuentaDAO {
      * @throws SQLException en caso de que se produzca cualquier otro error
      */
     public boolean registrarCuenta(Cliente cliente) throws SQLException{
-        boolean paso=false;
-        String sql="insert into cuenta values(?,?,?)";
+        boolean paso1=false;
+        boolean paso2=false;
+        String sql="insert into cuenta values(?,?)";
         try (PreparedStatement statement = conexion.prepareStatement(sql)){
             statement.setString(1, cliente.getCuenta().getNumCuenta());
-            statement.setString(1, cliente.getCuenta().getNumCuenta());
             statement.setDouble(2, cliente.getCuenta().getSaldo());
-            
             if (statement.executeUpdate()>0){
-                return true;
+                paso1=true;
             }
         }
-        return paso;
+        MovimientosDAO movimientodao = new MovimientosDAO(conexion);
+        if(movimientodao.registroMovimientoNuevaCuenta(cliente)){
+            paso2=true;
+        }
+        if(paso1&&paso2){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    
+    /**
+     * Metodo para actualizar el saldo de la cuenta.
+     * @param numCuenta
+     * @param saldo
+     * @return el número de filas afectadas.
+     * @throws SQLException 
+     */
+    public int actualizarCuenta(String numCuenta, double saldo) throws SQLException{
+        String sql = "update cuenta set saldo="+saldo+" where numCuenta='"+numCuenta+"';";
+        try(Statement st = conexion.createStatement()){
+            return st.executeUpdate(sql);
+        }
     }
 }

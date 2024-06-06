@@ -5,7 +5,6 @@
 package Clases;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 /**
  * Clase movimiento donde se registrarán los movimiento de los clientes y se podrá obtener la información de la misma.
@@ -14,20 +13,37 @@ import java.time.LocalTime;
 public class Movimientos {
     private String concepto;
     private double importe;
-    private Cliente beneficiario;
+    private String beneficiario;
     private String fecha;
 
-    public Movimientos(String concepto, double importe, Cliente beneficiario) {
+    public Movimientos(String concepto, double importe, String beneficiario) {
         this.concepto = concepto;
         this.importe = importe;
         this.beneficiario = beneficiario;
         //Obtenemos solo la fecha.
         fecha=String.valueOf(LocalDateTime.now()).substring(0,10);
     }
+
+    public String getConcepto() {
+        return concepto;
+    }
+
+    public double getImporte() {
+        return importe;
+    }
+
+    public String getBeneficiario() {
+        return beneficiario;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+    
     
     @Override
     public String toString() {
-        return "Movimiento->\nconcepto: " + concepto + "\nimporte:" + importe + "\nbeneficiario: " + beneficiario + "\nfecha: " + fecha ;
+        return "Movimiento -->\nconcepto: " + concepto + "\nimporte:" + importe + "\nbeneficiario: " + beneficiario + "\nfecha: " + fecha ;
     }
     
 }

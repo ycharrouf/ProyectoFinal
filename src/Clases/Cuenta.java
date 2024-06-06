@@ -14,9 +14,13 @@ public class Cuenta {
     private double saldo;
     //private//  ///Array de movimientos para que esten todos asociados a la cuenta.
     protected static ArrayList<Movimientos> movimientos = new ArrayList<>();
-
+    
+    public Cuenta(String numCuenta, double saldo){
+        this.NumCuenta=numCuenta;
+        this.saldo=saldo;
+    }
+    
     public Cuenta( double saldo) {
-        
         this.NumCuenta = "ES"+generarIBAN();
         this.saldo = saldo;
         //Cuanto el cliente crea al cuenta queda registrado.
@@ -70,5 +74,12 @@ public class Cuenta {
         }
         return controlIBAN+codigoBanco+sucursalCuenta+controlBanco+numCuentaF;
     }
+
+    @Override
+    public String toString() {
+        return "Cuenta--> " + "NumCuenta:" + NumCuenta + ", saldo:" + saldo;
+    }
+    
+    
     
 }

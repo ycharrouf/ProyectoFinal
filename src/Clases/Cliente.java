@@ -16,16 +16,14 @@ public class Cliente extends Persona{
      * Constructor por parametros.
      */
     public Cliente(String nombre, String apellido, int edad, String email, String DNI, int telefono,String direccion,String contraseña){
-      super(nombre, email, edad, email, DNI, telefono,direccion, contraseña);  
+      super(nombre, apellido, edad, email, DNI, telefono,direccion, contraseña);  
     }
     /**
      * Constructor por parametros y con cuenta.
      */
     public Cliente(String nombre, String apellido, int edad, String email, String DNI, int telefono,String direccion, String contraseña, Cuenta cuenta) {
-        super(nombre, email, edad, email, DNI, telefono,direccion, contraseña);
+        super(nombre, apellido, edad, email, DNI, telefono,direccion, contraseña);
         this.cuenta=cuenta;
-        //Cuando el cliente crea la cuenta se añade un registro para cuando de crea la cuenta.
-        Cuenta.movimientos.add(new Movimientos(("El clietne "+super.getNombre()+" a abierto una cuenta nueva"),cuenta.getSaldo(), this ));
     }
     //Setter and Getter
 

@@ -7,6 +7,7 @@ package Clases;
 
 import Interfaces.EncriptacionPass;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -19,28 +20,6 @@ public class EmpleadoDAO implements EncriptacionPass{
 
     public EmpleadoDAO(Connection conexion) {
         this.conexion = conexion;
-        try {
-            numEmpleados+=numEmpleados();
-            System.out.println(numEmpleados);
-        } catch (SQLException e) {
-            System.out.println("Error al contar los empleados: "+e.getMessage());
-        }
-    }
-    /**
-     * Metodo para contar el número de empleados
-     * @return
-     * @throws SQLException 
-     */
-    private int numEmpleados() throws SQLException{
-        int contador=0;
-        String sql ="select count(dni) from Empleados;";
-        try (Statement statement = conexion.createStatement()){
-            ResultSet rs = statement.executeQuery(sql);
-            while (rs.next()){
-                contador++;
-            }
-        }
-        return contador;
     }
     
     /**
@@ -61,7 +40,6 @@ public class EmpleadoDAO implements EncriptacionPass{
                 statement.setString(8, EncriptacionPass.encriptaPass(empleado.getContaseña()));
                 statement.setBoolean(9, empleado.isEsJefe());
                 statement.executeUpdate();
-                numEmpleados++;
             }
     }
     
@@ -75,7 +53,6 @@ public class EmpleadoDAO implements EncriptacionPass{
         try (PreparedStatement statement = conexion.prepareStatement(sql)){
             statement.setString(1, dni);
             statement.executeUpdate();
-            numEmpleados--;
         }
     }
     
@@ -86,6 +63,18 @@ public class EmpleadoDAO implements EncriptacionPass{
      */
     public void establecerEmpleadoAJefe(String dni) throws SQLException{
        String sql ="update empleados set esJefe=1 where dni= ? ";
+        try (PreparedStatement statement = conexion.prepareStatement(sql)){
+            statement.setString(1, dni);
+            statement.executeUpdate();
+        }
+    }
+    /**
+     * Establecer un empleado como jefe
+     * @param dni necesario para identificarlo
+     * @throws SQLException en caso de que se produzca cualquier otro error.
+     */
+    public void establecerJefeEmpleado(String dni) throws SQLException{
+       String sql ="update empleados set esJefe=0 where dni= ? ";
         try (PreparedStatement statement = conexion.prepareStatement(sql)){
             statement.setString(1, dni);
             statement.executeUpdate();
@@ -120,47 +109,19 @@ public class EmpleadoDAO implements EncriptacionPass{
      * @return un resulset con todos los clientes.
      * @throws SQLException en caso de que se produzca cualquier otro error.
      */
-    public ResultSet infotodosEmpleados () throws SQLException{
+    public ArrayList<Empleado> infotodosEmpleados () throws SQLException{
+        ArrayList<Empleado> empleados = new ArrayList<>();
         String sql = "select * from empleados;";
         try(Statement statement = conexion.createStatement()){
-            ResultSet resulset = statement.executeQuery(sql);
-            return  resulset;
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {                
+                empleados.add(new Empleado(rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("edad"), rs.getString("email"), rs.getString("dni"), rs.getInt("telefono"), rs.getString("direccion"), rs.getString("contraseña"), rs.getBoolean("esjefe")));
+            }
         }
-    }
-    
-    /**
-     * Probado funciona
-     * @param dni
-     * @throws SQLException 
-     */
-    ///Revisar lo de contar los empleados
-    public static void main(String[] args) {
-        Empleado emple =  new  Empleado("juan", "es empleado", 23, "juan@mgi", "12345678Z", 666666666, "no lose", "pass", false);
-        Connection conexión = Conexion.getConexion();
-        EmpleadoDAO update = new EmpleadoDAO(conexión);
-        System.out.println("----------"+numEmpleados);
-        try {
-            update.añadirEmpleado(emple);
-            System.out.println("Empleado añadido con exito");
-            
-        } catch (SQLException e) {
-            System.out.println("Error: "+e.getMessage());
+        if(!empleados.isEmpty()){
+            return empleados;
+        }else{
+            throw new SQLException("No se a encontrado ningun empleado registrado.");
         }
-        Scanner sc = new Scanner(System.in);
-        sc.next();
-        try {
-            update.establecerEmpleadoAJefe(emple.getDNI());
-        } catch (SQLException e) {
-            System.out.println("Error "+e.getMessage());
-        }
-        System.out.println(numEmpleados);
-        sc.next();
-        try {
-            update.eliminarEmpleado(emple.getDNI());
-            System.out.println("empleado eliminado con exito");
-        } catch (SQLException e) {
-            System.out.println("Error: "+e.getMessage());
-        }
-        System.out.println(numEmpleados);
     }
 }

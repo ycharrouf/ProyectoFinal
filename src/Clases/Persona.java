@@ -4,6 +4,8 @@
  */
 package Clases;
 
+import java.util.*;
+import java.sql.*;
 import java.util.InputMismatchException;
 
 /**
@@ -108,7 +110,7 @@ abstract class Persona {
     
     @Override
     public String toString() {
-        return "Cliente --> nombre: " + nombre + ", apellido: " + apellido + ", edad: " + edad + ", email:" + email + ", DNI: " + DNI + ", telefono: " + telefono;
+        return "Cliente --> DNI: "+DNI+", Nombre: " + nombre + ", Apellidos: " + apellido + ", Edad: " + edad + ", Email:" + email + ", Telefono: " + telefono;
     }
     
     /**
@@ -138,8 +140,6 @@ abstract class Persona {
      */
     private static boolean isTelefonoValido(int telefono){
         String NumbrePhone = String.valueOf((Integer) telefono);
-        System.out.println(NumbrePhone.length());
         return (NumbrePhone.length()==9);
     }
-    
 }

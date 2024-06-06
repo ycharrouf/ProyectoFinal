@@ -24,6 +24,11 @@ public class Empleado extends Persona{
     public void setEsJefe(boolean esJefe) {
         this.esJefe = esJefe;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+", ¿Es jefe?: "+esJefe;
+    }
     
     
     
