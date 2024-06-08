@@ -37,7 +37,7 @@ public class MenuFuncionalidadClientes {
             System.out.println("2.\tMostrar Movimientos");
             System.out.println("3.\tCambio de datos de Usuario.");
             System.out.println("4.\tTransferencias/Bizum");
-            System.out.println("5.\tCertificado de titularidad");////falta¡¡¡¡¡
+            System.out.println("5.\tCertificado de titularidad");
             System.out.println("6.\tSalir");
             System.out.print(": ");
             opcion=sc.nextInt();
@@ -66,7 +66,6 @@ public class MenuFuncionalidadClientes {
             } catch (IOException e) {
                     System.err.println("Error al crear el certificado de titularidad: "+e.getMessage());
             }
-                
                 break;
             case 6:
                 break;
@@ -163,6 +162,7 @@ public class MenuFuncionalidadClientes {
         System.out.println("1.\tTransferencia");
         System.out.println("2.\tBizum");
         System.out.println("3.\tAtras");
+        System.out.println(": ");
         opcion=sc.nextInt();
 
         switch (opcion) {

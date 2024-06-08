@@ -5,7 +5,6 @@
 package Principal;
 
 import Clases.*;
-import com.sun.source.tree.BreakTree;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -14,7 +13,6 @@ import java.util.Scanner;
  * @author Yassin Charrouf errynda
  */
 public class ProgramaFinal {
-    private static Scanner sc = new Scanner(System.in).useDelimiter("\n");
     private static Cliente clienteActual=null;
     private static Empleado empleadoActual=null;
     
